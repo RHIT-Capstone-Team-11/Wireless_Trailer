@@ -1,0 +1,54 @@
+# ==========================================
+# 1. Compiled Binaries & Build Outputs
+# ==========================================
+# Object files, temporary build artifacts, and linked binaries
+*.o
+*.obj
+*.elf
+*.bin
+*.hex
+*.map
+*.d
+
+# ==========================================
+# 2. Framework & IDE Build Directories
+# ==========================================
+# PlatformIO build outputs and local environment files
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# ESP-IDF CMake build directory and SDK configurations
+build/
+sdkconfig.old
+sdkconfig.ci
+
+# Arduino IDE build files
+applet/
+*.elf
+
+# ==========================================
+# 3. Text Editor / IDE User Settings
+# ==========================================
+# VS Code user settings (prevents overwriting team workspace preferences)
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+
+# CLion, Eclipse, or JetBrains IDE files
+.idea/
+.project
+.cproject
+.settings/
+
+# OS-generated metadata files
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# 4. Sensitive Information & Secrets
+# ==========================================
+# Keeps private Wi-Fi credentials or security keys off GitHub
+secrets.h
+config.private.h
+*.pem
