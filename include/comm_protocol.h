@@ -36,7 +36,7 @@ typedef struct __attribute__((packed)) {
     uint8_t checksum;                   // checksum to verify packets
 } trailer_message_t;
 
-static inline uint8_t comm_calc_checksum(const trailer_message_t *msg) {
+static inline uint8_t comm_calc_checksum(const trailer_message_t *msg) { //look into size
     const uint8_t *bytes = (const uint8_t *) msg;
     size_t length = sizeof(trailer_message_t) - sizeof(uint8_t);
 
