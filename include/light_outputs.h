@@ -4,13 +4,11 @@
 #include "esp_err.h"
 #include "comm_protocol.h"
 
-// ask how exactly the signals are sent
-#define LIGHT_OUTPUT_PIN_LEFT_TURN      6
-#define LIGHT_OUTPUT_PIN_RIGHT_TURN     4
-#define LIGHT_OUTPUT_PIN_BRAKE          5
-#define LIGHT_OUTPUT_PIN_RUNNING        5
-#define LIGHT_OUTPUT_PIN_REVERSE        5
-#define LIGHT_OUTPUT_PIN_HAZARDS        5
+#define LIGHT_OUTPUT_PIN_LEFT       5
+#define LIGHT_OUTPUT_PIN_RIGHT      3
+#define LIGHT_OUTPUT_PIN_REVERSE    6
+#define LIGHT_OUTPUT_PIN_PARK       4
+
 
 /**
 * @brief Initialize all trialer lights GPIOs and set them to OFF

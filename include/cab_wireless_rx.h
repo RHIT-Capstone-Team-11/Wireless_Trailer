@@ -46,3 +46,8 @@ esp_err_t cab_wireless_rx_register_callback(cab_rx_status_cb_t cb);
  * @param out_status Output pointer to copy status data into.
  */
 bool cab_wireless_rx_get_peer_status(const uint8_t *peer_mac, trailer_status_t *out_status);
+
+/**
+ * @brief Fetch status of a trailer by its assigned index (0, 1, 2...).
+ */
+bool cab_wireless_rx_get_status_by_index(uint8_t trailer_index, trailer_status_t *out_status);
