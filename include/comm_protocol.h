@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 #define COMM_ID 0xA5 // identifier for our signals
-#define COMM_PROTOCAL_VERSION 0x01 // protocal version
+#define COMM_PROTOCAL_VERSION 0x02 // protocal version
 
 /*
 Instead of doing bit masking use union
@@ -55,7 +55,7 @@ typedef struct __attribute__((packed)) {
     uint8_t version;                    // version of comm protocal COMM_PROTOCAL_VERSION
     uint8_t msg_type;                   // message type that is being sent
     uint8_t sequence_id;                // Changes with transmissions
-    trialer_payload_t payload;          // data tdepending on msg_type
+    trailer_payload_t payload;          // data tdepending on msg_type
     uint8_t checksum;                   // XOR checksum to verify packets
 } trailer_message_t;
 

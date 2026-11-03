@@ -47,7 +47,7 @@ esp_err_t cab_wireless_register_pair_callback(cab_peer_paired_cb_t cb);
  * 
  * @param cb Function pointer to callback.
  */
-esp_err_t cab_wireless_register_status_callback(cab_rx_status_cb_t cb);
+esp_err_t cab_wireless_register_status_callback(cab_status_cb_t cb);
 
 
 /**
