@@ -59,6 +59,16 @@ typedef struct __attribute__((packed)) {
     uint8_t checksum;                   // XOR checksum to verify packets
 } trailer_message_t;
 
+/**
+ * @brief Status and diagnostic data reported back from a trailer receiver node.
+ */
+typedef struct __attribute__((packed)) {
+    uint8_t peer_mac[ESP_NOW_ETH_ADDLEN]; // MAC address of reporting trailer node
+    bool bulb_fault_detected;             // Indicates bulb/circuit fault detected on trailer
+    uint16_t battery_mv;                  // Battery / aux voltage in millivolts
+    int8_t rssi;                          // Received signal strength
+} trailer_status_t;
+
 static inline uint8_t comm_calc_checksum(const trailer_message_t *msg) { //look into size
     const uint8_t *bytes = (const uint8_t *) msg;
     size_t length = sizeof(trailer_message_t) - sizeof(uint8_t);
