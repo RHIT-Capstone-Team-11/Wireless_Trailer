@@ -5,7 +5,6 @@
 #include "esp_err.h"
 #include "comm_protocol.h"
 
-#define ESP_NOW_ETH_ADDLEN          6
 #define CAB_WIRELESS_WIFI_CHANNEL   1
 
 /**
