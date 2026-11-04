@@ -7,6 +7,20 @@
 #define TRAILER_WIRELESS_WIFI_CHANNEL 1
 
 /**
+ * @brief Callback function type invoked when a validated light command arrives from the cab.
+ *
+ * @param state The newly received light states (left turn, brake, etc.).
+ */
+typedef void (*trailer_light_cb_t)(trailer_light_state_t state);
+
+/**
+ * @brief Callback invoked when the trailer successfully pairs with a truck cab.
+ *
+ * @param cab_mac 6-byte MAC address of the paired cab.
+ */
+typedef void (*trailer_paired_cb_t)(const uint8_t *cab_mac);
+
+/**
 * @brief Initialize WIFI and ESP-NOW transmitter
 */
 esp_err_t trailer_wireless_init(void);
@@ -21,7 +35,7 @@ esp_err_t trailer_wireless_start_pairing(uint32_t timeout_ms);
 /**
 * @brief callback for when a connection is exstablished
 */
-esp_err_t trailer_wireless_register_pair_callback(trailer_paired_cb_t) cb;
+esp_err_t trailer_wireless_register_pair_callback(trailer_paired_cb_t cb);
 
 /**
  * @brief Clear pairing data (unpair from cab).
@@ -31,25 +45,11 @@ esp_err_t trailer_wireless_rx_unpair(void);
 
 /**
  * @brief Register a callback to be notified immediately when a new light packet arrives.
- * 
+ *
  * @param cb Callback function pointer.
  * @return esp_err_t ESP_OK on success.
  */
-esp_err_t trailer_wireless_register_status_callback(trailer_rx_light_cb_t cb);
-
-/**
- * @brief Callback function type invoked when a validated light command arrives from the cab.
- * 
- * @param state The newly received light states (left turn, brake, etc.).
- */
-typedef void (*trailer_light_cb_t)(trailer_light_state_t state);
-
-/**
- * @brief Callback invoked when the trailer successfully pairs with a truck cab.
- * 
- * @param cab_mac 6-byte MAC address of the paired cab.
- */
-typedef void (*trailer_paired_cb_t)(const uint8_t *cab_mac);
+esp_err_t trailer_wireless_register_status_callback(trailer_light_cb_t cb);
 
 /**
  * @brief Check if this trailer is currently paired with a cab.

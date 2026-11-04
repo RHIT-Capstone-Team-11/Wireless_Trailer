@@ -2,6 +2,8 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <stddef.h>   // size_t, NULL
+#include "esp_now.h"  // ESP_NOW_ETH_ALEN
 
 #define COMM_ID 0xA5 // identifier for our signals
 #define COMM_PROTOCAL_VERSION 0x02 // protocal version
@@ -63,7 +65,7 @@ typedef struct __attribute__((packed)) {
  * @brief Status and diagnostic data reported back from a trailer receiver node.
  */
 typedef struct __attribute__((packed)) {
-    uint8_t peer_mac[ESP_NOW_ETH_ADDLEN]; // MAC address of reporting trailer node
+    uint8_t peer_mac[ESP_NOW_ETH_ALEN];   // MAC address of reporting trailer node
     bool bulb_fault_detected;             // Indicates bulb/circuit fault detected on trailer
     uint16_t battery_mv;                  // Battery / aux voltage in millivolts
     int8_t rssi;                          // Received signal strength

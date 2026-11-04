@@ -1,4 +1,4 @@
-#pargma once
+#pragma once
 
 #include <stdint.h>
 #include "esp_err.h"
@@ -14,12 +14,12 @@ typedef enum {
     LIGHT_ASSIGNMENT_RIGHT_TURN = 2,
     LIGHT_ASSIGNMENT_RUNNING    = 3,
     LIGHT_ASSIGNMENT_REVERSE    = 4,
-} trailer_light_assignemnt_t;
+} trailer_light_assignment_t;
 
 node_role_t app_config_get_role(void);
 
 esp_err_t   app_config_set_role(node_role_t role);
 
-trailer_light_assignemnt_t app_config_get_light_assignment(void);
+trailer_light_assignment_t app_config_get_light_assignment(void);
 
-esp_err_t app_config_set_light_assignment(trailer_light_assignemnt_t assignemnt);
+esp_err_t app_config_set_light_assignment(trailer_light_assignment_t assignment);
