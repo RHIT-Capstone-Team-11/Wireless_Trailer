@@ -75,7 +75,7 @@ uint8_t cab_wireless_peer_count(void);
 *
 * @param state Current light states
 */
-esp_err_t cab_wireless_send(trailer_light_state_t state);
+esp_err_t cab_wireless_send(comm_msg_type_t msg_type, const trailer_payload_t *payload);
 
 /**
 * @brief Transmit light state to specific peer
@@ -83,7 +83,7 @@ esp_err_t cab_wireless_send(trailer_light_state_t state);
 * @param peer_mac 6 byte MAC address of target peer
 * @param state Current light state
 */
-esp_err_t cab_wireless_send_to(const uint8_t *peer_mac, trailer_light_state_t state);
+esp_err_t cab_wireless_send_to(const uint8_t *peer_mac, comm_msg_type_t msg_type, const trailer_payload_t *payload);
 
 /** 
 * @brief Check if all peers are responsive via ack
@@ -107,7 +107,3 @@ bool cab_wireless_peer_connected(const uint8_t *peer_mac);
  */
 bool cab_wireless_get_peer_status(const uint8_t *peer_mac, trailer_status_t *out_status);
 
-/**
- * @brief Fetch status of a trailer by its assigned index (0, 1, 2...).
- */
-bool cab_wireless_get_status_by_index(uint8_t trailer_index, trailer_status_t *out_status);

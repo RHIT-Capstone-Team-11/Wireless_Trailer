@@ -3,6 +3,14 @@
 #include "nvs_flash.h"
 #include "app_config.h"
 
+#if defined(ROLE_ICM)
+#include "cab_wireless.h"
+#include "vehicle_inputs.h"
+#elif defined(ROLE_OTM)
+#include "trailer_wireless.h"
+#include "light_outputs.h"
+#endif
+
 static const char *TAG = "MAIN"; // used in labeling messages
 
 void app_main(void)
@@ -19,29 +27,15 @@ void app_main(void)
     ESP_ERROR_CHECK(status);
     ESP_LOGI(TAG, "NVS initialized successfully.");
 
-    // Read saved role from flash memory
-    node_role_t role = app_config_get_role();
-
-    // Branch into the assigned role
-    switch (role) {
-        case NODE_ROLE_CAB:
-            ESP_LOGI(TAG, "Role: CAB (Transmitter). Initializing cab mode...");
-            // cab_wireless_init();
-            // vehicle_inputs_init();
-            break;
-
-        case NODE_ROLE_TRAILER: {
-            trailer_light_assignment_t assignment = app_config_get_light_assignment();
-            ESP_LOGI(TAG, "Role: TRAILER (Receiver). Light assignment: %d. Initializing trailer mode...", assignment);
-            // trailer_wireless_init();
-            // light_outputs_init();
-            break;
-        }
-
-        case NODE_ROLE_UNCONFIGURED:
-        default:
-            ESP_LOGW(TAG, "Role: UNCONFIGURED! Waiting for companion app setup...");
-            // Start provisioning / pairing mode here so the companion app can configure it
-            break;
-    }
+    #if defined(ROLE_ICM)
+        ESP_LOGI(TAG, "Role: ICM Initializing.");
+        cab_wireless_init();
+        vehicle_inputs_init();
+    #elif defined(ROLE_OTM)
+        ESP_LOGI(TAG, "Role: OTM Initializing.");
+        trailer_wireless_init();
+        light_ouputs_init();
+    #else
+    #error "Neither ROLE_ICM nor ROLE_OTM defined. Select an appropriate build enviroment."
+    #endif
 }
